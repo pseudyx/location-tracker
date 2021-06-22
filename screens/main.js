@@ -34,15 +34,15 @@ export default function Main() {
           console.log(`loc enabled: ${isLocationServicesEnabled}`);
           console.log(`loc status: ${JSON.stringify(locationPRoviderStatus)}`);
           if(isLocationServicesEnabled){
-            let loc = await Location.getCurrentPositionAsync();
-            // await Location.watchPositionAsync({
-            //     enableHighAccuracy: false,
-            //     distanceInterval: 1,
-            //     timeInterval: 30000}, newLoc => {
-            //       console.log(`new loc: ${newLoc}`);
-            //       setLocation(newLoc);
-            //       deviceSvc.setLocation(newLoc.coords.latitude, newLoc.coords.longitude);
-            //     });
+            let loc = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
+            await Location.watchPositionAsync({
+                enableHighAccuracy: true,
+                distanceInterval: 1,
+                timeInterval: 30000}, newLoc => {
+                  console.log(`new loc: ${newLoc}`);
+                  setLocation(newLoc);
+                  deviceSvc.setLocation(newLoc.coords.latitude, newLoc.coords.longitude);
+                });
             console.log(`loc: ${JSON.stringify(loc)}`);
             setLocation(loc);
             if(loc.coords !== null){
