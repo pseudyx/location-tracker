@@ -1,4 +1,5 @@
 import * as FileSystem from 'expo-file-system';
+//Amplify
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
 import config from './aws-exports'
 import { createDevice, updateDevice, updateLocation } from './graphql/mutations';

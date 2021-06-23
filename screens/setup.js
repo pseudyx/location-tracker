@@ -25,8 +25,6 @@ export default function Setup() {
         const valid = /^[a-zA-Z0-9_\-\.]+$/;
         if(valid.test(tracker) && valid.test(device)){
             Keyboard.dismiss();
-                        
-            console.log(`name: ${device} tracker: ${tracker}`);
             deviceSvc.register(device, tracker);
 
         } else {
